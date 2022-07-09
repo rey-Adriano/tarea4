@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth; 
+use App\Http\Controllers\CursoController; 
+use App\Http\Controllers\MatriculaController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route("home"));
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/mostrarMatricula',[MatriculaController::class, "procesar"] )->name("matricula"); 
+Route::get('/mostrarCursos', [CursoController::class, "mostrar"]);
